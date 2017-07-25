@@ -11,17 +11,13 @@ class PhotoView extends React.Component{
   }
 
   componentDidMount(){
-    this.props.getData("photos?albumid="+this.props.albumid,(data)=>{
+    this.props.getData("photos?albumId="+this.props.albumid,(data)=>{
       let phlist = data.slice(0,5).map((item)=>
         <ImageCard key={item.id} url={item.url}/> );
       this.setState({
         photos:phlist
       })
     })
-  }
-
-  setAlbum=(id)=>{
-    this.props.setter("userid",id);
   }
 
   setView=(view)=>{
