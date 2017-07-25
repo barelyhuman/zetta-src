@@ -44,7 +44,7 @@ class App extends Component{
       view=<PhotoView setter={this.setStateValue} albumid={albumid} getData={this.getData}/>
     }
     return(
-      <div>
+      <div id="app">
         {view}
       </div>
     );

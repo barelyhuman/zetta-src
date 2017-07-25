@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import ImageCard from "../components/imagecard.js";
 
 class PhotoView extends React.Component{
   constructor(props){
@@ -12,12 +13,7 @@ class PhotoView extends React.Component{
   componentDidMount(){
     this.props.getData("photos?albumid="+this.props.albumid,(data)=>{
       let phlist = data.slice(0,5).map((item)=>
-
-        <div key={item.id} onClick={()=>{
-            this.setUser(item.id)
-          }}><img style={{width:100+"px",height:100+"px"}} src={item.url}/></div>
-
-      );
+        <ImageCard key={item.id} url={item.url}/> );
       this.setState({
         photos:phlist
       })
@@ -35,13 +31,13 @@ class PhotoView extends React.Component{
   render(){
     console.log(this.state.photos);
     return(
-      <div>
-      <div onClick={()=>{
+      <div className="view">
+      <div className="button" onClick={()=>{
         this.setView("albums")
       }}>Back</div>
-      <ul>
-        {this.state.photos}
-      </ul>
+      <div className="card-container">
+      {this.state.photos}
+      </div>
       </div>
 
     );

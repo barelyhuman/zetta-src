@@ -1,4 +1,5 @@
 import React from "react";
+import AlbumCard from "../components/albumcard.js";
 
 class AlbumView extends React.Component{
   constructor(props){
@@ -22,9 +23,8 @@ class AlbumView extends React.Component{
   componentDidMount(){
     this.props.getData("albums?userId="+this.props.userid,(data)=>{
       let alblist = data.map((item)=>
-        <div key={item.id} onClick={()=>{
-          this.setAlbum(item.id)
-        }}><li >{item.title}</li></div>
+        <AlbumCard key={item.id} onClick={()=>{this.setAlbum(item.id)}}
+        title={item.title}/>
       );
       this.setState({
         albums:alblist
@@ -35,13 +35,13 @@ class AlbumView extends React.Component{
   render(){
     console.log(this.state.albums);
     return(
-      <div>
+      <div className="view">
       <div onClick={()=>{
         this.setView("users")
-      }}>Back</div>
-      <ul>
+      }} className="button">Back</div>
+      <div className="card-container">
         {this.state.albums}
-      </ul>
+      </div>
       </div>
     )
   }
